@@ -25,7 +25,9 @@ export function getProperties(values: ComboboxPreviewProps, defaultProperties: P
             "optionsSourceDatabaseCustomContentType",
             "optionsSourceDatabaseDataSource",
             "optionsSourceDatabaseDefaultValue",
-            "optionsSourceDatabaseValueAttribute"
+            "optionsSourceDatabaseValueAttribute",
+            "optionsSourceDatabaseItemSelection",
+            "optionsSourceDatabaseUsageType"
         ]);
         if (["enumeration", "boolean"].includes(values.optionsSourceType)) {
             hidePropertiesIn(defaultProperties, values, [
@@ -93,6 +95,9 @@ export function getProperties(values: ComboboxPreviewProps, defaultProperties: P
             "selectAllButton",
             "selectAllButtonCaption"
         ]);
+        if (values.optionsSourceDatabaseDataSource === null) {
+            hidePropertiesIn(defaultProperties, values, ["optionsSourceDatabaseCaptionType"]);
+        }
         if (values.optionsSourceDatabaseCaptionType === "attribute") {
             hidePropertiesIn(defaultProperties, values, ["optionsSourceDatabaseCaptionExpression"]);
         } else {
@@ -102,6 +107,14 @@ export function getProperties(values: ComboboxPreviewProps, defaultProperties: P
             hidePropertiesIn(defaultProperties, values, ["optionsSourceDatabaseCustomContent"]);
         } else {
             hidePropertiesIn(defaultProperties, values, ["selectedItemsStyle"]);
+        }
+        if (values.optionsSourceDatabaseUsageType === "attribute") {
+            hidePropertiesIn(defaultProperties, values, ["optionsSourceDatabaseItemSelection"]);
+        } else {
+            hidePropertiesIn(defaultProperties, values, [
+                "databaseAttributeString",
+                "optionsSourceDatabaseDefaultValue"
+            ]);
         }
     } else if (values.source === "static") {
         hidePropertiesIn(defaultProperties, values, [
@@ -127,7 +140,9 @@ export function getProperties(values: ComboboxPreviewProps, defaultProperties: P
             "optionsSourceDatabaseCustomContentType",
             "optionsSourceDatabaseDataSource",
             "optionsSourceDatabaseValueAttribute",
-            "optionsSourceDatabaseDefaultValue"
+            "optionsSourceDatabaseDefaultValue",
+            "optionsSourceDatabaseItemSelection",
+            "optionsSourceDatabaseUsageType"
         ]);
     }
 
