@@ -1,14 +1,14 @@
 import { InitialFilterValue } from "@mendix/widget-plugin-filtering";
 import { DefaultFilterEnum } from "../../typings/DatagridDateFilterProps";
 
-export type DefaultFilterValue = {
+export type InitCtxValues = {
     type: DefaultFilterEnum;
     value?: Date;
     startDate?: Date;
     endDate?: Date;
 };
 
-export function translateFilters(filters?: InitialFilterValue[]): DefaultFilterValue | undefined {
+export function translateFilters(filters?: InitialFilterValue[]): InitCtxValues | undefined {
     if (filters && filters.length > 0) {
         if (filters.length === 1) {
             const [filter] = filters;
